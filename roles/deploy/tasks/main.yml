@@ -1,0 +1,22 @@
+- name: Download get docker script
+  get_url:
+    url: "https://get.docker.com/"
+    dest: "/tmp/dockerinstall.sh"
+    mode: "u=rwx,g=rx,o=rx"
+
+- name: Run get docker script
+  shell: /tmp/dockerinstall.sh
+
+- name: Remove get docker script
+  file:
+    path: /tmp/dockerinstall.sh
+    state: absent
+
+- name: Clone repository
+  git:
+    repo: "{{ repo_name }}"
+    dest: /opt/wombytelabs/
+
+- name: Start Docker Services
+  shell: >
+    cd /opt/wombytelabs/deployable && docker compose up --build -d

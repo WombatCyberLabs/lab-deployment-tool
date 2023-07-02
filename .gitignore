@@ -1,0 +1,4 @@
+hosts
+labkey
+deploy-instance.yml
+*.swp
