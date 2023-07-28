@@ -17,6 +17,14 @@
     repo: "{{ repo_name }}"
     dest: /opt/wombytelabs/
 
-- name: Start Docker Services
+- name: Stop potential old Docker services
+  shell: >
+    cd /opt/wombytelabs/deployable && docker compose down
+
+- name: Pull prebuilt Docker images
+  shell: >
+    cd /opt/wombytelabs/deployable && docker compose pull
+
+- name: Start Docker services
   shell: >
     cd /opt/wombytelabs/deployable && docker compose up --build -d
