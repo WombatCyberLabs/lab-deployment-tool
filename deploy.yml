@@ -1,7 +1,6 @@
 - name: Set up lab deployment
   hosts:
           - target
-  remote_user: 
   roles:
           - deploy
   vars:
